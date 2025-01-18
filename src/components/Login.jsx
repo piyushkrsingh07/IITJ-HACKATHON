@@ -3,14 +3,17 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FcGoogle } from 'react-icons/fc';
+import { useNavigate } from 'react-router-dom';
 
 const formSchema = z.object({
   username: z.string().trim().min(4, { message: 'Invalid username' }),
   password: z.string().trim().min(4, { message: 'Invalid password' }),
 });
 
-const Login = () => {
+const Login = (props) => {
   const [loading, setLoading] = useState(false);
+ let setIsLoggedIn=props.setIsLoggedIn;
+ const navigate=useNavigate();
 
   const {
     register,
@@ -48,7 +51,8 @@ const Login = () => {
       const responseData = await response.json();
 
       if (response.ok) {
-            
+            setIsLoggedIn(true)
+            navigate("/")
       } else {
         alert(responseData.message || 'Login failed. Please try again.');
       }

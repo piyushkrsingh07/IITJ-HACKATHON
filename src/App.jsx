@@ -12,6 +12,7 @@ import Navbar from './components/Navbar'
 import {BrowserRouter, Route,Routes} from "react-router-dom"
 import Footer from './components/Footer'
 import Diagnosis from './components/Diagnosis'
+import Camera from './components/Camera'
 
 
 
@@ -30,6 +31,7 @@ function App() {
       <Route path="/contact" element={<Contact/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/diagnosis" element={<Diagnosis/>}/>
+      <Route path="/camera" element={<Camera/>}/>
       <Route/>
     </Routes>
     <Footer/>
