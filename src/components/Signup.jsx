@@ -143,7 +143,7 @@ const Signup = () => {
         {/* Right Side - Info Section */}
         <div className="p-8 lg:p-12 bg-gray-100 flex flex-col justify-center items-center">
           <img
-            src="https://via.placeholder.com/300x200"
+            src="https://ucarecdn.com/04687d00-60d7-4189-972e-7cc1d2ea9790/-/preview/580x282/"
             alt="Herbal Medicines"
             className="w-full h-auto rounded-lg"
           />

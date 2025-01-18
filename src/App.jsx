@@ -10,6 +10,7 @@ import Features from './components/Features'
 import Contact from './components/Contact'
 import Navbar from './components/Navbar'
 import {BrowserRouter, Route,Routes} from "react-router-dom"
+import Footer from './components/Footer'
 
 
 
@@ -26,8 +27,10 @@ function App() {
       <Route path="/" element={<Home/>}/>
       <Route path="/features" element={<Features/>}/>
       <Route path="/contact" element={<Contact/>}/>
+      <Route path="/dashboard" element={<Dashboard/>}/>
       <Route/>
     </Routes>
+    <Footer/>
     </BrowserRouter>
     </>
   )

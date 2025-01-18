@@ -3,92 +3,54 @@ import { NavLink,Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <div className='w-screen mt-0'>
-    
-    {/* <nav className='relative flex justify-between space-x-3 bg-black h-[50px] mt-0 pl-2 pr-3 items-center w-full'> */}
-      
-
-   
-  
-
-       
-     
-
-      {/* <div className='flex ml-5 mr-3 gap-3'>
-        
-       
-        {/* <NavLink to="/login">
-            <button className='text-white bg-gray-500 px-2 py-1 rounded-sm border-hidden transition-all duration:200 hover:border-solid hover:border-white hover:border'>Login</button>
-        </NavLink>
-         
-      
-     
-        <NavLink to="/signup">
-          <button className='text-white bg-gray-500 px-2 py-1 rounded-sm border-hidden transition-all duration:200 hover:border-solid hover:border-white hover:border'>SignUp</button>
-        </NavLink> */}
-       
-
-
-
-
-
-
-
-
-      {/* </div> */} 
-
-
-
-       
-
-     
-    {/* </nav> */}
-
-   
-
-
-         
-         <nav className="bg-black w-screen flex justify-between items-center">
-          <div className='flex gap-x-2 '>
-       
-         <div className="text-white text-2xl font-bold mt-4">Vedamrut</div>
-         </div>
-         <ul className="md:flex space-x-4">
-           <li><Link to="/" className="text-white text-xl block px-4 py-2">Dashboard</Link></li>
- 
-           <li><Link to="/features" className="text-white text-xl block px-4 py-2">Features</Link></li>
-           <li><Link to="/contact" className="text-white  text-xl block px-4 py-2">Contact</Link></li>
-
-         </ul>
-         {/* <NavLink to="/"> */}
-        {/* <button onClick={()=>{
-              //  setIsLoggedIn(false)
-              //  toast.success("You are logged out");
-                
-         }} className='text-white bg-gray-500 px-2 py-1 rounded-sm border-hidden transition-all duration:200 hover:border-solid hover:border-white hover:border'>Logout</button>
-        </NavLink>
-         */}
-         <div className='flex gap-x-5'>
-              <NavLink to="/login">
-            <button className='text-white bg-gray-500 px-2 py-1 rounded-sm border-hidden transition-all duration:200 hover:border-solid hover:border-white hover:border'>Login</button>
-        </NavLink>
-         
-      
-     
-        <NavLink to="/signup">
-          <button className='text-white bg-gray-500 px-2 py-1 rounded-sm border-hidden transition-all duration:200 hover:border-solid hover:border-white hover:border'>SignUp</button>
-        </NavLink>
-        </div>
-       
-       </nav>
-
-
-
-
-
-
-   
+    <div className="w-screen mt-0 z-50">
+  <nav className="bg-white w-screen flex justify-between items-center py-4 px-6 shadow-md">
+    <div className="flex items-center">
+      <img src="https://ucarecdn.com/8d9b546a-c7d1-499d-9306-e5e5deeb8e1f/-/preview/80x80/" alt="Logo" className="h-12 w-10 " />
+      <div className="text-green-600 text-2xl font-semibold">VedAmrut</div>
     </div>
+    <ul className="hidden md:flex space-x-8">
+      <li>
+        <a href="/" className="text-gray-800 text-lg font-medium hover:text-green-600">
+          HOME
+        </a>
+      </li>
+      <li>
+        <a href="/diagnosis" className="text-gray-800 text-lg font-medium hover:text-green-600">
+          DIAGNOSIS
+        </a>
+      </li>
+      <li>
+        <a href="/dashboard" className="text-gray-800 text-lg font-medium hover:text-green-600">
+          DASHBOARD
+        </a>
+      </li>
+      <li>
+        <a href="/features" className="text-gray-800 text-lg font-medium hover:text-green-600">
+          FEATURES
+        </a>
+      </li>
+      <li>
+        <a href="/contact" className="text-gray-800 text-lg font-medium hover:text-green-600">
+          CONTACT
+        </a>
+      </li>
+    </ul>
+    <div className="flex items-center space-x-4">
+      <a href="/login">
+        <button className="text-gray-800 border border-gray-400 px-4 py-2 rounded-full hover:bg-gray-100 transition duration-300">
+          LOGIN
+        </button>
+      </a>
+      <a href="/signup">
+        <button className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300">
+          SIGN UP
+        </button>
+      </a>
+    </div>
+  </nav>
+</div>
+
   )
 }
 
