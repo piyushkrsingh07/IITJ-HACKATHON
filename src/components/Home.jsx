@@ -32,7 +32,7 @@ const Home = () => {
 
         {/* Right Section */}
         <div className="w-[40%] relative">
-          <div class=" overflow-hidden w-[100%] h-[100%] border-l-[50%] border-b-[50%]  md:w-[600px] md:h-[600px] hidden md:block   mt-0 overflow-x-hidden  z-2 rounded-b-lg">
+          <div class=" overflow-hidden w-[100%] h-[100%] border-l-[50%] border-b-[50%]  md:w-[600px] md:h-[600px] hidden md:block mt-[-13px] overflow-x-hidden  z-2 rounded-b-lg">
             <img
               src="https://ucarecdn.com/c8be99f6-9a9e-477f-9c08-04098fb5329f/-/preview/515x787/"
               alt="Ayurvedic ingredients"

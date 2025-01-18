@@ -11,6 +11,7 @@ import Contact from './components/Contact'
 import Navbar from './components/Navbar'
 import {BrowserRouter, Route,Routes} from "react-router-dom"
 import Footer from './components/Footer'
+import Diagnosis from './components/Diagnosis'
 
 
 
@@ -28,6 +29,7 @@ function App() {
       <Route path="/features" element={<Features/>}/>
       <Route path="/contact" element={<Contact/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
+      <Route path="/diagnosis" element={<Diagnosis/>}/>
       <Route/>
     </Routes>
     <Footer/>
