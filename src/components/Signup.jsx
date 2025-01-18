@@ -1,138 +1,175 @@
-// import React from 'react'
-
-// const Signup = () => {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
-
-// export default Signup
-import React from 'react'
-import {useForm} from 'react-hook-form'
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import {z} from 'zod'
-import {zodResolver} from '@hookform/resolvers/zod'
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const formSchema = z.object({
- username:z.string().trim().min(4,{message:'Invalid username'}),
- password:z.string().trim().min(4,{message:'Invalid password'}),
+  username: z.string().trim().min(4, { message: 'Invalid username' }),
+  password: z.string().trim().min(4, { message: 'Invalid password' }),
+});
 
-})
 const Signup = () => {
   const [loading, setLoading] = useState(false);
-
-
-
 
   const {
     register,
     formState: { errors, isSubmitting },
     handleSubmit,
-    setValue,
-    watch,
-    setError
+    setError,
   } = useForm({
-    defaultValues:{
-      username:'',
-      password:''
+    defaultValues: {
+      username: '',
+      password: '',
     },
-    resolver:zodResolver(formSchema)
-  })
+    resolver: zodResolver(formSchema),
+  });
+  const onSubmit = async (data) => {
 
 
-
-  
-  // const onSubmit = async (data) => {
- 
-
-  //   setLoading(true);
-   
-
-  //   try {
-  //     const response = await fetch('', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //      username:data.username,
-  //         password: data.password,
-       
-  //       }),
-  //     });
+    setLoading(true);
 
 
-  //     const responseData = await response.json();
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: data.username,
+          password: data.password,
 
-  //     if (response.ok) {
-      
-  //     } else {
-  //       alert(responseData.message || 'Login failed. Please try again.');
-  //     }
-  //   } catch (error) {
-  //     alert('An error occurred during login. Please try again.');
-  //     console.error('Error during login:', error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  async function onSubmit(data){
-    //API CALL STIMULATE
-    try{
-    await new Promise((resolve)=>setTimeout(resolve,5000));
-    console.log("submitting form data",data)
-    }catch(error){
-        console.log("error:",error)
-           setError("root", {
-     message: error.message,
+        }),
       });
-   }
+
+
+      const responseData = await response.json();
+
+      if (response.ok) {
+
+      } else {
+        alert(responseData.message || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      alert('An error occurred during login. Please try again.');
+      console.error('Error during login:', error);
+    } finally {
+      setLoading(false);
     }
+  };
+  // async function onSubmit(data) {
+  //   try {
+  //     await new Promise((resolve) => setTimeout(resolve, 5000));
+  //     console.log('submitting form data', data);
+  //   } catch (error) {
+  //     console.log('error:', error);
+  //     setError('root', {
+  //       message: error.message,
+  //     });
+  //   }
+  // }
 
   return (
-    <div>
-   <form onSubmit={handleSubmit(onSubmit)} >
-    
-    <div className="w-2/3 space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="" className="block text-black font-bold text-lg">Name:</label>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="w-4/5 max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white shadow-lg rounded-lg overflow-hidden">
+        {/* Left Side - Form */}
+        <div className="p-8 lg:p-12">
+          <h1 className="text-2xl font-bold text-green-700">SIGN UP TO VedAmrut</h1>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-6">
+            {/* Name Field */}
+            <div>
+              <label htmlFor="username" className="block text-lg font-semibold text-gray-700">
+                Name
+              </label>
               <input
-                // id="Name"
-                placeholder="Enter Your Name"
+                id="username"
+                placeholder="Enter Full Name"
                 {...register('username')}
-                className="w-full p-2 bg-white border border-gray-400 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 placeholder-black"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-500"
               />
-              {errors.username && <span className="text-red-500 text-sm">{errors.username.message}</span>}
+              {errors.username && (
+                <span className="text-red-500 text-sm">{errors.username.message}</span>
+              )}
             </div>
-            <div className="space-y-1">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+
+            {/* Password Field */}
+            <div>
+              <label htmlFor="password" className="block text-lg font-semibold text-gray-700">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
+                placeholder="Enter Password"
                 {...register('password', { required: 'Password is required' })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-500"
               />
-              {errors.password && <span className="text-sm text-red-500">{errors.password.message}</span>}
+              {errors.password && (
+                <span className="text-red-500 text-sm">{errors.password.message}</span>
+              )}
             </div>
 
-      <button
+            {/* Checkbox */}
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="terms"
+                className="h-4 w-4 text-green-500 border-gray-300 rounded focus:ring-green-500"
+                required
+              />
+              <label htmlFor="terms" className="text-sm text-gray-700">
+                I have read <a href="#" className="text-green-500 underline">terms & conditions</a> and agree
+              </label>
+            </div>
+
+            {/* Submit Button */}
+            <button
               type="submit"
-              className={`w-full py-2 rounded-md text-white font-bold ${
-                loading
+              className={`w-full py-3 text-white font-bold rounded-md ${loading
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500'
-              } transition duration-300`}
+                  : 'bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500'
+                } transition duration-300`}
               disabled={loading}
             >
-              {isSubmitting ? 'Creating Account...' : 'Signup'}
+              {isSubmitting ? 'Creating Account...' : 'Sign Up'}
             </button>
+          </form>
+          <p className="text-sm text-gray-600 mt-4">
+            Already have an account? <a href="#" className="text-green-500 underline">Log in</a>.
+          </p>
+        </div>
 
+        {/* Right Side - Info Section */}
+        <div className="p-8 lg:p-12 bg-gray-100 flex flex-col justify-center items-center">
+          <img
+            src="https://via.placeholder.com/300x200"
+            alt="Herbal Medicines"
+            className="w-full h-auto rounded-lg"
+          />
+          <h2 className="text-xl font-semibold text-gray-700 mt-6">How can we help?</h2>
+          <ul className="space-y-4 mt-4 text-gray-600">
+            <li className="flex items-start space-x-2">
+              <span className="text-green-600">✔</span>
+              <span>Get offers on a new car built to your specifications.</span>
+            </li>
+            <li className="flex items-start space-x-2">
+              <span className="text-green-600">✔</span>
+              <span>Beat the queues with readily available cars in stock.</span>
+            </li>
+            <li className="flex items-start space-x-2">
+              <span className="text-green-600">✔</span>
+              <span>Free part exchange valuation of your current car.</span>
+            </li>
+            <li className="flex items-start space-x-2">
+              <span className="text-green-600">✔</span>
+              <span>Unlock exclusive offers with financing and deals.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-   </form>
-    </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
